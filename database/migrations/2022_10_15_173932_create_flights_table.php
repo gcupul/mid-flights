@@ -14,15 +14,25 @@ return new class extends Migration
     public function up()
     {
         Schema::create('flights', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->integer('origin_id')->unsigned();
-            $table->integer('destination_id')->unsigned();
-            $table->integer('airline_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('origin_id');
+            $table->unsignedBigInteger('destination_id');
+            $table->unsignedBigInteger('airline_id');
             $table->string('number');
             $table->double('base_price', 10, 2);
             $table->dateTime('departure_at');
             $table->integer('duration');
             $table->timestamps();
+        });
+
+        Schema::table('flights', function (Blueprint $table) {
+            $table->index('origin_id');
+            $table->index('destination_id');
+            $table->index('airline_id');
+
+            $table->foreign('origin_id')->references('id')->on('airports')->onDelete('cascade');
+            $table->foreign('destination_id')->references('id')->on('airports')->onDelete('cascade');
+            $table->foreign('airline_id')->references('id')->on('airlines')->onDelete('cascade');
         });
     }
 

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payment_details', function (Blueprint $table) {
-            $table->id()->autoIncrement();
+            $table->bigIncrements('id');
             $table->integer('last_digits');
             $table->string('name');
             $table->string('expiration');

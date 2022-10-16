@@ -52,6 +52,7 @@ class ReservationController extends BaseController
 
             $reservation = new Reservation();
             $reservation->flight_id = $input['flight_id'];
+            $reservation->user_id = $user->id;
             $reservation->count = count($input['passenger']);
             $reservation->save();
 

@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "b60dc0d2-f1b6-4fd7-a7c9-786a21060d2d",
+		"name": "mid-flights-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14360665"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "/api/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gisel Cupul\",\r\n    \"email\": \"gcupul@outlook.com\",\r\n    \"password\": \"123456\",\r\n    \"c_password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://mid-flights-api.test/api/register",
+							"protocol": "http",
+							"host": [
+								"mid-flights-api",
+								"test"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gcupul@outlook.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://mid-flights-api.test/api/login",
+							"protocol": "http",
+							"host": [
+								"mid-flights-api",
+								"test"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/api/airports",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|kprj0NV5AyD4qm1sKwuPJs0OxUQt91zpMKp2oV8q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://mid-flights-api.test/api/airports",
+					"protocol": "http",
+					"host": [
+						"mid-flights-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"airports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/flights",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|kprj0NV5AyD4qm1sKwuPJs0OxUQt91zpMKp2oV8q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"origin_id\": 53,\r\n    \"destination_id\": 43\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://mid-flights-api.test/api/flights",
+					"protocol": "http",
+					"host": [
+						"mid-flights-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/seats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|kprj0NV5AyD4qm1sKwuPJs0OxUQt91zpMKp2oV8q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"flight_id\": 2658,\r\n    \"class\": \"Ejecutivo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://mid-flights-api.test/api/seats",
+					"protocol": "http",
+					"host": [
+						"mid-flights-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"seats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/reservation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|kprj0NV5AyD4qm1sKwuPJs0OxUQt91zpMKp2oV8q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"flight_id\": 2658,\r\n    \"passenger\": [\r\n        {\r\n            \"name\": \"Gisel Prueba2\",\r\n            \"last_name\": \"Prueba 2\",\r\n            \"seat_id\": 318841\r\n        },\r\n        {\r\n            \"name\": \"Gisel Prueba3\",\r\n            \"last_name\": \"Prueba 3\",\r\n            \"seat_id\": 318842\r\n        },\r\n        {\r\n            \"name\": \"Gisel Prueba4\",\r\n            \"last_name\": \"Prueba 4\",\r\n            \"seat_id\": 318843\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://mid-flights-api.test/api/reservation",
+					"protocol": "http",
+					"host": [
+						"mid-flights-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"reservation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/payReservation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|kprj0NV5AyD4qm1sKwuPJs0OxUQt91zpMKp2oV8q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"flight_id\": 131,\r\n    \"reservation_id\": 20,\r\n    \"payment\": {\r\n        \"name\": \"Gisel Cupul\",\r\n        \"card\": \"1234567894561230\",\r\n        \"expiration\": \"15/20\",\r\n        \"cvv\": \"123\",\r\n        \"type_card\": \"Visa\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://mid-flights-api.test/api/payReservation",
+					"protocol": "http",
+					"host": [
+						"mid-flights-api",
+						"test"
+					],
+					"path": [
+						"api",
+						"payReservation"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -14,14 +14,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reservation_details', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->integer('reservation_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('reservation_id');
             $table->string('name');
             $table->string('last_name');
-            $table->integer('seat_id');
+            $table->unsignedBigInteger('seat_id');
             $table->double('price', 10, 2);
             $table->timestamps();
+        });
 
+        Schema::table('reservation_details', function (Blueprint $table) {
+            $table->index('reservation_id');
+            $table->index('seat_id');
+
+            $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade');
+            $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
         });
     }
 

@@ -14,14 +14,25 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->integer('flight_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('flight_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('count');
             $table->double('total', 10, 2);
             $table->enum('paid', ['Y', 'N'])->default('N');
             $table->string('confirmation_code')->nullable();
-            $table->integer('payment_detail_id')->nullable();
+            $table->unsignedBigInteger('payment_detail_id')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('reservations', function (Blueprint $table) {
+            $table->index('flight_id');
+            $table->index('payment_detail_id');
+            $table->index('user_id');
+
+            $table->foreign('flight_id')->references('id')->on('flights')->onDelete('cascade');
+            $table->foreign('payment_detail_id')->references('id')->on('payment_details')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

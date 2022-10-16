@@ -14,13 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('seats', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->integer('flight_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('flight_id');
             $table->integer('row');
             $table->string('seat');
             $table->enum('class', ['Económico', 'Normal', 'Ejecutivo'])->default('Económico');
             $table->timestamps();
+        });
 
+        Schema::table('seats', function (Blueprint $table) {
+            $table->index('flight_id');
+
+            $table->foreign('flight_id')->references('id')->on('flights')->onDelete('cascade');
         });
     }
 
